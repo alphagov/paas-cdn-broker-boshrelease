@@ -13,25 +13,27 @@ properties:
     description: "Broker Listen Port"
     default: 3000
   cdn-broker.username:
-    description: "broker auth username"
+    description: "The username for basic auth between the Cloud Controller and the broker"
     default: "cdn-broker"
+  cdn-broker.password:
+    description: "The password for basic auth between the Cloud Controller and the broker"
   cdn-broker.database_url:
     description: "Broker Database URL"
   cdn-broker.email:
     description: "An email for generating the cert"
   cdn-broker.acme_url:
-    description: "ACME url"
+    description: "ACME url used for cert generation. Can be a staging URL or a production one for real certs."
   cdn-broker.bucket:
-    description: "Broker bucket, used to store certstrap HTTP challenges"
+    description: "Broker bucket, used to store certstrap HTTP challenges. The broker needs put and delete permissions and the items in it need to be publicly readable."
   cdn-broker.iam_path_prefix:
-    description: "IAM path prefix"
+    description: "IAM path prefix used for naming certs"
     default: "letsencrypt"
   cdn-broker.cloudfront_prefix:
-    description: "CloudFront Prefix"
+    description: "The name prefix for CloudFront distributions created by the broker"
   cdn-broker.aws_access_key_id:
-    description: "AWS Access Key ID"
+    description: "For access to S3, IAM, and CloudFront"
   cdn-broker.aws_secret_access_key:
-    description: "AWS Secret Access Key"
+    description: "For access to S3, IAM, and CloudFront"
   cdn-broker.aws_region:
     description: "AWS CDN Region"
     default: "eu-west-1"
@@ -39,13 +41,13 @@ properties:
     description: "Server side encryption"
     default: "AES256"
   cdn-broker.api_address:
-    description: "API address for the CLI"
+    description: "CloudFoundry API address for the CLI. The broker will check if the domain has been created and if it really belongs to the org creating the service"
   cdn-broker.client_id:
-    description: "Client ID"
+    description: "Credentials for obtaining org and domain details"
   cdn-broker.client_secret:
-    description: "Client secret"
+    description: "Credentials for obtaining org and domain details"
   cdn-broker.default_origin:
     description: "Default origin. e.g. example.com"
   cdn-broker.schedule:
-    description: "Cron schedlue"
+    description: "Cron schedlue for checking if cert renewal is required"
     default: "0 0 * * * *"
