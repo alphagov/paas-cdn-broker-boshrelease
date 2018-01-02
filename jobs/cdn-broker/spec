@@ -50,4 +50,4 @@ properties:
     description: "Default origin. e.g. example.com"
   cdn-broker.schedule:
     description: "Cron schedlue for checking if cert renewal is required"
-    default: "0 0 * * * *"
+    default: "0 0 * * *"
