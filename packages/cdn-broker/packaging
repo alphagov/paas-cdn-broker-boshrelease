@@ -5,6 +5,10 @@ set -u # report the usage of uninitialized variables
 export GOROOT=$(readlink -nf /var/vcap/packages/golang)
 export PATH=${GOROOT}/bin:${PATH}
 
+# Set Go cache
+export GOCACHE=/tmp/gocache/cdn-broker
+mkdir -p $GOCACHE
+
 # Build CDN Service Broker package
 echo "Building CDN Service Broker..."
 PACKAGE_NAME=github.com/18F/cf-cdn-service-broker
