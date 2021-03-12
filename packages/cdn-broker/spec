@@ -3,4 +3,4 @@ name: cdn-broker
 dependencies:
   - golang
 files:
-  - github.com/18F/cf-cdn-service-broker/**/*
+  - github.com/alphagov/paas-cdn-broker/**/*
