@@ -15,6 +15,7 @@ PACKAGE_NAME=github.com/alphagov/paas-cdn-broker
 mkdir -p ${BOSH_INSTALL_TARGET}/src/${PACKAGE_NAME}
 cp -a ${BOSH_COMPILE_TARGET}/${PACKAGE_NAME}/* ${BOSH_INSTALL_TARGET}/src/${PACKAGE_NAME}
 export GOPATH=${BOSH_INSTALL_TARGET}
+cd ${BOSH_INSTALL_TARGET}/src/${PACKAGE_NAME}
 go install ${PACKAGE_NAME}/cmd/cdn-broker
 go install ${PACKAGE_NAME}/cmd/cdn-cron
 
