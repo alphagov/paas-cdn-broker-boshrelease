@@ -19,6 +19,12 @@ properties:
     description: "The password for basic auth between the Cloud Controller and the broker"
   cdn-broker.database_url:
     description: "Broker Database URL"
+  cdn-broker.database_conn_max_lifetime:
+    description: "Broker Database connection max lifetime"
+    default: 1h
+  cdn-broker.database_max_idle_conns:
+    description: "Broker Database max idle connections"
+    default: 1
   cdn-broker.email:
     description: "An email for generating the cert"
   cdn-broker.acme_url:
