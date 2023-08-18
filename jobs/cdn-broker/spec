@@ -54,6 +54,9 @@ properties:
     description: "Credentials for obtaining org and domain details"
   cdn-broker.default_origin:
     description: "Default origin. e.g. example.com"
+  cdn-broker.extra_request_headers:
+    description: "Extra headers to add to forwarded requests (comma-separated key:value pairs)"
+    default: ""
   cdn-broker.schedule:
     description: "Cron schedlue for checking if cert renewal is required"
     default: "0 0 * * * *"
