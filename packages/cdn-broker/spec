@@ -1,6 +1,7 @@
 ---
 name: cdn-broker
 dependencies:
-  - golang
+  - golang-1.20-linux
+
 files:
   - github.com/alphagov/paas-cdn-broker/**/*
