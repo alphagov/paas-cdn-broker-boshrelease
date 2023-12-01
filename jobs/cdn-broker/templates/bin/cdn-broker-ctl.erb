@@ -23,6 +23,7 @@ case $1 in
 
     # Start CDN Broker service
     exec /var/vcap/packages/cdn-broker/bin/cdn-broker \
+      --config=${CDN_BROKER_CONF_DIR}/cdn-config.json \
       > >(tee -a ${CDN_BROKER_LOG_DIR}/${OUTPUT_LABEL}.stdout.log | logger -t vcap.${OUTPUT_LABEL}.stdout) \
       2> >(tee -a ${CDN_BROKER_LOG_DIR}/${OUTPUT_LABEL}.stderr.log | logger -t vcap.${OUTPUT_LABEL}.stderr)
     ;;
