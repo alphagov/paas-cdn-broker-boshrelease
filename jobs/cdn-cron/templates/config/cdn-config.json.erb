@@ -1,0 +1,30 @@
+{
+  "broker_username": "<%= p('cdn-broker.broker_username') %>",
+  "broker_password": "<%= p('cdn-broker.broker_password') %>",
+  "host": "<%= p('cdn-broker.host') %>",
+  "port": "<%= p('cdn-broker.port') %>",
+  "database_url": "<%= p('cdn-broker.database_url') %>",
+  "database_conn_max_lifetime": "<%= p('cdn-broker.database_conn_max_lifetime') %>",
+  "database_max_idle_conns": <%= p('cdn-broker.database_max_idle_conns') %>,
+  "cloudfront_prefix": "<%= p('cdn-broker.cloudfront_prefix') %>",
+  "aws_access_key_id": "<%= p('cdn-broker.aws_access_key_id') %>",
+  "aws_secret_access_key": "<%= p('cdn-broker.aws_secret_access_key') %>",
+  "aws_region": "<%= p('cdn-broker.aws_region') %>",
+  "server_side_encryption": "<%= p('cdn-broker.server_side_encryption') %>",
+  "api_address": "<%= p('cdn-broker.api_address') %>",
+  "client_id": "<%= p('cdn-broker.client_id') %>",
+  "client_secret": "<%= p('cdn-broker.client_secret') %>",
+  "default_origin": "<%= p('cdn-broker.default_origin') %>",
+  "default_default_ttl": <%= p('cdn-broker.default_default_ttl') %>,
+  "schedule": "<%= p('cdn-broker.schedule') %>",
+<% header_pairs = p('cdn-broker.extra_request_headers').split(',') %><% headers_map = header_pairs.map { |pair| pair.split(':').map(&:strip) }.to_h %> "extra_request_headers": {
+    <% headers_map.each_with_index do |(key, value), index| %>"<%= key %>": "<%= value %>"<%= ',' unless index == headers_map.size - 1 %><% end %>
+  },
+<% if_p('cdn-broker.tls') do |tls| -%>
+  "tls": {
+    "certificate": "<%= tls.fetch("certificate").gsub(/\n/, '\\n') %>",
+    "private_key": "<%= tls.fetch("private_key").gsub(/\n/, '\\n') %>"
+  },
+<% end -%>
+  "healthcheck_port": "<%= p('cdn-broker.healthcheck_port') %>"
+}

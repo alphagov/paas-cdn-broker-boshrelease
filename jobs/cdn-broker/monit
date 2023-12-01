@@ -4,7 +4,7 @@ check process cdn-broker
   stop program "/var/vcap/packages/bosh-helpers/monit_debugger cdn-broker-ctl '/var/vcap/jobs/cdn-broker/bin/cdn-broker-ctl stop'"
   group vcap
   if failed
-    port <%= p('cdn-broker.port') %>
+    port <%= p('cdn-broker.healthcheck_port') %>
     protocol http
     request "/healthcheck/postgresql"
     timeout 3 seconds
