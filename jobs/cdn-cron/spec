@@ -3,6 +3,7 @@ name: cdn-cron
 templates:
   bin/job_properties.sh.erb: bin/job_properties.sh
   bin/cdn-cron-ctl.erb: bin/cdn-cron-ctl
+  config/cdn-config.json.erb: config/cdn-config.json
 
 packages:
   - bosh-helpers
@@ -11,7 +12,10 @@ packages:
 properties:
   cdn-broker.port:
     description: "Broker Listen Port"
-    default: 3000
+    default: 443
+  cdn-broker.healthcheck_port:
+    description: "Healthcheck Listen Port"
+    default: "3000"
   cdn-broker.broker_username:
     description: "The username for basic auth between the Cloud Controller and the broker"
     default: "cdn-broker"
@@ -25,12 +29,6 @@ properties:
   cdn-broker.database_max_idle_conns:
     description: "Broker Database max idle connections"
     default: 1
-  cdn-broker.email:
-    description: "An email for generating the cert"
-  cdn-broker.acme_url:
-    description: "ACME url used for cert generation. Can be a staging URL or a production one for real certs."
-  cdn-broker.bucket:
-    description: "Broker bucket, used to store certstrap HTTP challenges. The broker needs put and delete permissions and the items in it need to be publicly readable."
   cdn-broker.iam_path_prefix:
     description: "IAM path prefix used for naming certs"
     default: "letsencrypt"
@@ -54,6 +52,30 @@ properties:
     description: "Credentials for obtaining org and domain details"
   cdn-broker.default_origin:
     description: "Default origin. e.g. example.com"
+  cdn-broker.default_default_ttl:
+    description: "Default time to live"
+    default: "0"
+  cdn-broker.extra_request_headers:
+    description: "Extra headers to add to forwarded requests (comma-separated key:value pairs)"
+    default: ""
   cdn-broker.schedule:
     description: "Cron schedlue for checking if cert renewal is required"
     default: "0 0 * * * *"
+  cdn-broker.host:
+    description: "Broker Listen hostname or IP"
+    default: "0.0.0.0"
+  cdn-broker.tls:
+    description: "Certificate and private key for TLS listener"
+    example: |
+      ca: |
+        -----BEGIN CERTIFICATE-----
+        ...
+        -----END CERTIFICATE-----
+      certificate: |
+        -----BEGIN CERTIFICATE-----
+        ...
+        -----END CERTIFICATE-----
+      private_key: |
+        -----BEGIN EXAMPLE RSA PRIVATE KEY-----
+        ...
+        -----END EXAMPLE RSA PRIVATE KEY-----
