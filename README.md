@@ -9,7 +9,6 @@ This is a Bosh release for deploying [18F's CDN broker](https://github.com/alpha
 The broker requires:
 
 * database
-* S3 bucket
 * ELB
 * security group to access the database
 
@@ -74,10 +73,6 @@ properties:
     broker_username: "cdn-broker"
     broker_password: xxx
     database_url: postgresql://xxx
-    email: "team@domain.com"
-    acme_url: "https://acme-v01.api.letsencrypt.org/directory"
-    bucket: cdn_acme_challenge
-    iam_path_prefix: letsencrypt
     cloudfront_prefix: cdn
     aws_access_key_id: ""
     aws_secret_access_key: ""
